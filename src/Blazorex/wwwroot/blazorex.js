@@ -115,6 +115,12 @@ window.Blazorex = (() => {
         }
     }
 
+    window.ontouchstart = (e) => {
+        for (let ctx in _contexts) {
+            _contexts[ctx].managedInstance.invokeMethodAsync('TouchStarted', e);
+        }
+    }
+
     return {
         initCanvas,
         onFrameUpdate,

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Blazorex
 {
@@ -64,6 +66,12 @@ namespace Blazorex
             await this.OnResize.InvokeAsync(new Size(width, height));
         }
 
+        [JSInvokable]
+        public async ValueTask TouchStarted(TouchEventArgs eventArgs)
+        {
+            await this.OnTouchStart.InvokeAsync(eventArgs);
+        }
+
         #endregion JS interop
 
         #region Event Callbacks
@@ -85,6 +93,9 @@ namespace Blazorex
 
         [Parameter]
         public EventCallback<CanvasBase> OnCanvasReady { get; set; }
+
+        [Parameter]
+        public EventCallback<TouchEventArgs> OnTouchStart { get; set; }
 
         #endregion Event Callbacks
 
