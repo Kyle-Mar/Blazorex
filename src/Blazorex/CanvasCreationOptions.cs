@@ -50,5 +50,5 @@ public readonly struct CanvasCreationOptions
     public Action<MouseCoords> OnMouseMove { get; init; }
     public Action<Size> OnResize { get; init; }
 
-    public Action<TouchEventArgs> OnTouchStart { get; init; }
+    public Action<List<TouchCoords>> OnTouchStart { get; init; }
 }

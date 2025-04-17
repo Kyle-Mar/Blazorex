@@ -117,7 +117,17 @@ window.Blazorex = (() => {
 
     window.ontouchstart = (e) => {
         for (let ctx in _contexts) {
-            _contexts[ctx].managedInstance.invokeMethodAsync('TouchStarted', e);
+            let bcr = document.getElementById(_contexts[ctx].id).getBoundingClientRect();
+            // Adjust the touch coordinates to the canvas coordinates
+            let points = [];
+            for (let i = 0; i < e.changedTouches.length; i++) {
+
+                points.push({
+                    X: e.changedTouches[i].clientX - bcr.x,
+                    Y: e.changedTouches[i].clientY - bcr.y
+                });
+            }
+            _contexts[ctx].managedInstance.invokeMethodAsync('TouchStarted', points);
         }
     }
 
