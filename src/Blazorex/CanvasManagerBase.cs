@@ -16,6 +16,13 @@ namespace Blazorex
 
             this.StateHasChanged();
         }
+        public void UpdateCanvasOptions(string name, CanvasCreationOptions canvasCreationOptions)
+        {
+            if (_names.ContainsKey(name))
+            {
+                _names[name] = canvasCreationOptions;
+            }
+        }
 
         internal async ValueTask OnChildCanvasAddedAsync(CanvasBase canvas)
         {
